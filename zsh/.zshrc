@@ -134,7 +134,7 @@ fi
 export PATH="$HOME/.yarn/bin:$PATH"
 
 # Python
-export WORKON_HOME=$HOME/.virtualenvs   # optional
-export PROJECT_HOME=$HOME/projects      # optional
-source /usr/bin/virtualenvwrapper.sh
+# export WORKON_HOME=$HOME/.virtualenvs   # optional
+# export PROJECT_HOME=$HOME/projects      # optional
+# source /usr/bin/virtualenvwrapper.sh
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
