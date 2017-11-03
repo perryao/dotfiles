@@ -169,3 +169,10 @@ let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/
 " => vim-airline config
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " let g:airline_theme='solarized-dark'
+"
+"""""""""""""""""""""""""""""""""""
+" => vim-markdown-preview
+"""""""""""""""""""""""""""""""""""
+let vim_markdown_preview_toggle=1
+let vim_markdown_preview_browser='FirefoxDeveloperEdition'
+let vim_markdown_preview_temp_file=1
