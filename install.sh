@@ -35,6 +35,8 @@ setup_arch () {
 
 setup_debian () {
   echo "setting up debian"
+  sudo apt-get update && sudo apt-get install python python3 python-pip python3-pip
+  pip install awscli --upgrade --user
   setup_common
 }
 

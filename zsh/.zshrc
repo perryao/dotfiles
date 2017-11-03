@@ -132,6 +132,8 @@ then
 fi
 
 export PATH="$HOME/.yarn/bin:$PATH"
+# for aws cli
+export PATH="$HOME/.local/bin:$PATH"
 
 # Python
 # export WORKON_HOME=$HOME/.virtualenvs   # optional
