@@ -120,3 +120,15 @@ export PATH="$HOME/.local/bin:$PATH"
 [ -f /Users/anthonyperry/.travis/travis.sh ] && source /Users/anthonyperry/.travis/travis.sh
 
 export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
+
+
+# OS Specific config
+case `uname` in
+  Darwin)
+    # commands for OS X go here
+    . `brew --prefix`/etc/profile.d/z.sh
+  ;;
+  Linux)
+    # commands for Linux go here
+  ;;
+esac

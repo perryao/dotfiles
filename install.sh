@@ -45,7 +45,7 @@ setup_mac () {
   # install brew
   $(which ruby) -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   echo "Installed homebrew"
-  brew install reattach-to-user-namespace tmux vim
+  brew install reattach-to-user-namespace tmux vim z
   brew cask install docker iterm2 postman
   setup_common
 }
