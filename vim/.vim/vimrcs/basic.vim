@@ -17,6 +17,10 @@ nnoremap ; :
 " Fast saving
 nmap <leader>w :w!<cr>
 
+" :W sudo saves the file 
+" (useful for handling the permission-denied error)
+command W w !sudo tee % > /dev/null
+
 " place cursor between braces
 " inoremap { {<CR><BS>}<Esc>ko
 
@@ -26,11 +30,11 @@ set autoread
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set tabstop=4               " number of visual spaces per TAB
+set tabstop=2               " number of visual spaces per TAB
 set expandtab               " tabs are spaces
 set smarttab
-set softtabstop=4           " number of spaces in tab when editing
-set shiftwidth=4
+set softtabstop=2           " number of spaces in tab when editing
+set shiftwidth=2
 set autoindent              " indent when creating new line
 set smartindent
 
@@ -94,6 +98,9 @@ map <space>l <C-W>l
 " Close the current buffer
 map <leader>bd :Bclose<cr>:tabclose<cr>gT
 
+" Disable highlight when <leader><cr> is pressed
+map <silent> <leader><cr> :noh<cr>
+
 map <Tab> :bnext<cr>
 map <S-Tab> :bprevious<cr>
 
@@ -103,6 +110,9 @@ try
   set stal=2
 catch
 endtry
+
+" Switch CWD to the directory of the open buffer
+map <leader>cd :cd %:p:h<cr>:pwd<cr>
 
 """"""""""""""""""""""""""""""
 " => Status line
