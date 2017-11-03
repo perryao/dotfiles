@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=/home/mike/.oh-my-zsh
+export ZSH=~/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -86,47 +86,21 @@ source $ZSH/oh-my-zsh.sh
 #
 source ~/.oh-my-zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# lazy load nvm
-# * this causes problems when a tool needs node immediately
-
-# nvm() {
-#     unset -f nvm
-#     export NVM_DIR=~/.nvm
-#     [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-#     nvm "$@"
-# }
-
-# node() {
-#     unset -f node
-#     export NVM_DIR=~/.nvm
-#     [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-#     node "$@"
-# }
-
-# npm() {
-#     unset -f npm
-#     export NVM_DIR=~/.nvm
-#     [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-#     npm "$@"
-# }
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
-
 export GOPATH=$HOME/go
 export PATH="$PATH:$GOPATH/bin"
 
 # auto launch tmux
 if [[ -z "$TMUX" ]]
 then
+    echo "Loading tmux"
     ID="`tmux ls | grep -vm1 attached | cut -d: -f1`"
     if [[ -z "$ID" ]]
     then
-        tmux new-session
+        tmux -2 new-session
     else
         # kill old sessions
         tmux kill-session -t "$ID"
-        tmux new-session
+        tmux -2 new-session
         # tmux attach-session -t "$ID"
     fi
 fi
@@ -136,7 +110,13 @@ export PATH="$HOME/.yarn/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 
 # Python
-# export WORKON_HOME=$HOME/.virtualenvs   # optional
-# export PROJECT_HOME=$HOME/projects      # optional
-# source /usr/bin/virtualenvwrapper.sh
+#export WORKON_HOME=$HOME/.virtualenvs   # optional
+#export PROJECT_HOME=$HOME/projects      # optional
+#source /usr/bin/virtualenvwrapper.sh
+#
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# added by travis gem
+[ -f /Users/anthonyperry/.travis/travis.sh ] && source /Users/anthonyperry/.travis/travis.sh
+
+export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).

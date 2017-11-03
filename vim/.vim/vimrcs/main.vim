@@ -21,8 +21,6 @@ Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --gocode-completer --tern-completer' } 
-Plug 'ternjs/tern_for_vim', { 'do' : 'npm install' }
 Plug 'fatih/vim-go'
 Plug 'airblade/vim-gitgutter'
 Plug 'terryma/vim-multiple-cursors'
