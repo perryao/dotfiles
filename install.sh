@@ -7,9 +7,9 @@ set -e
 # chrome, firefox
 
 setup_common () {
-  echo "Installing nvm"
-  curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.5/install.sh | bash
-  echo "nvm installed successfully"
+  echo "Installing n for managing node versions"
+  curl -L https://git.io/n-install | bash
+  echo "n installed successfully"
 
   echo "Installing oh-my-zsh"
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
@@ -40,16 +40,18 @@ setup_debian () {
   setup_common
 }
 
-install_mac () {
+setup_mac () {
   echo "setting up mac"
   # install brew
   $(which ruby) -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   echo "Installed homebrew"
+  brew install reattach-to-user-namespace tmux vim
   brew cask install docker iterm2 postman
   setup_common
 }
 
 setup() {
+  echo "Detecting OS"
   if [ -f "/etc/os-release" ]; then
     echo "on platform with /etc/os-release"
     name=$(cat /etc/os-release | grep ^NAME)
@@ -58,7 +60,8 @@ setup() {
       "*Arch Linux") echo "Arch Linux" && setup_arch ;;
       *) echo "Unknown: $name" && exit -1;;
     esac
+  elif [ $(uname -s) = Darwin ]; then
+    echo "on mac"
+    setup_mac
   fi
 }
-
-setup
