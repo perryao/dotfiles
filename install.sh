@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -e
+# set -e
 
 # Install on every platform
 # git, stow, python 2 + 3, python-pip, docker, zsh, nodejs, golang, tmux, vim with clipboard support
@@ -7,23 +7,23 @@ set -e
 # chrome, firefox
 
 setup_common () {
-  echo "Installing n for managing node versions"
-  curl -L https://git.io/n-install | bash
-  echo "n installed successfully"
+  if [ ! -d ~/.oh-my-zsh ]; then
+    echo "Installing oh-my-zsh"
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/}/plugins/zsh-syntax-highlighting
+    echo "Installed oh-my-zsh"
+  fi
 
-  echo "Installing oh-my-zsh"
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/}/plugins/zsh-syntax-highlighting
-  echo "Installed oh-my-zsh"
-
-  echo "Pulling down dotfiles"
-  git clone https://github.com/perryao/dotfiles.git ~/
-  echo "Pulled dotfiles"
+  if [ ! -d ~/dotfiles ]; then
+    echo "Pulling down dotfiles"
+    git clone https://github.com/perryao/dotfiles.git ~/dotfiles
+    echo "Pulled dotfiles"
+  fi
+  # TODO: maybe git pull dotfiles to update them
 }
 
 setup_arch () {
   echo "setting up arch linux"
-  # install grub
   # install networkmanager, xorg-server, xorg-xinit, openssh, gnome-keyring, ttf-croscoe, ttf-dejavu, systat, acpi, pulseaudio-alsa with pacman
   # install yaourt
   # install urxvt-unicode
@@ -43,10 +43,14 @@ setup_debian () {
 setup_mac () {
   echo "setting up mac"
   # install brew
-  $(which ruby) -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  if xcode-select -p ; then
+    echo "command line tools already installed"
+  else
+    xcode-select --install
+  fi
+  brew update &>/dev/null || $(which ruby) -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   echo "Installed homebrew"
-  brew install reattach-to-user-namespace tmux vim z
-  brew cask install docker iterm2 postman
+  brew bundle
   setup_common
 }
 
