@@ -52,6 +52,17 @@ setup_mac () {
   echo "Installed homebrew"
   brew bundle
   setup_common
+
+  # apply one dark terminal theme
+  /usr/libexec/PlistBuddy -c "add :'Window Settings':'One Dark' dict" ~/Library/Preferences/com.apple.Terminal.plist
+  /usr/libexec/PlistBuddy -x -c "Merge /Users/$USER/dotfiles/themes/macos/One\ Dark.terminal 'Window Settings':'One Dark'" ~/Library/Preferences/com.apple.Terminal.plist
+  #set Terminal defaults
+  defaults write /Users/$USER/Library/Preferences/com.apple.Terminal.plist "Default Window Settings" "One Dark"
+  defaults write /Users/$USER/Library/Preferences/com.apple.Terminal.plist "Startup Window Settings" "One Dark"
+
+  #restart terminal to apply changes
+  killall Terminal
+  exit 0
 }
 
 setup() {
