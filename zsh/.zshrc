@@ -132,3 +132,8 @@ case `uname` in
     # commands for Linux go here
   ;;
 esac
+
+# Helper Functions
+checkport() {
+  sudo lsof -n -i :$1| grep LISTEN
+}
