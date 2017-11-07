@@ -7,6 +7,7 @@ brew "awscli"
 brew "cmake"
 brew "reattach-to-user-namespace"
 brew "n" # node version management
+brew "grip" # for vim-markdown-preview
 brew "stow"
 brew "ansible"
 brew "packer"
