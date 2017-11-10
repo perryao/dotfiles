@@ -1,6 +1,7 @@
 call plug#begin('~/.vim/plugged')
 
 Plug 'joshdick/onedark.vim'
+Plug 'tomasiser/vim-code-dark'
 Plug 'raphamorim/lucario'
 Plug 'reedes/vim-colors-pencil'
 Plug 'jlanzarotta/bufexplorer'
