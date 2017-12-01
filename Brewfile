@@ -4,6 +4,7 @@ tap "homebrew/bundle"
 tap "caskroom/cask"
 tap "caskroom/versions"
 brew "awscli"
+brew "azure-cli"
 brew "cmake"
 brew "reattach-to-user-namespace"
 brew "n" # node version management
