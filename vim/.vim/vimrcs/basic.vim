@@ -6,6 +6,8 @@ set nomodeline
 filetype indent on  " load filetype-specific indent files
 filetype plugin on
 
+set updatetime=250
+
 "faster than reaching for esc
 inoremap jk <esc>
 let mapleader=","

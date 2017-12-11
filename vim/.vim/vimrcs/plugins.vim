@@ -2,12 +2,17 @@
 " => Nerd Tree
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:NERDTreeWinPos = "left"
-let NERDTreeShowHidden=0
+let NERDTreeShowHidden=1
+let NERDTreeCascadeSingleChildDir=0
 let NERDTreeIgnore = ['\.pyc$', '__pycache__']
 let g:NERDTreeWinSize=35
 map <leader>nn :NERDTreeToggle<cr>
 map <leader>nb :NERDTreeFromBookmark
 map <leader>nf :NERDTreeFind<cr>
+
+"""""""""""""""""""""""""""""""
+" => Vim GitGutter
+"""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""
 " => The Silver Searcher
@@ -177,3 +182,8 @@ let vim_markdown_preview_toggle=1
 let vim_markdown_preview_browser='FirefoxDeveloperEdition'
 let vim_markdown_preview_temp_file=1
 let vim_markdown_preview_github=1
+
+
+"""vim terraform
+let g:terraform_align=1
+let g:terraform_fmt_on_save=1
