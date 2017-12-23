@@ -43,8 +43,12 @@ setup_debian () {
   if [ ! -f /etc/apt/sources.list.d/sbt.list ]; then
     echo "deb https://dl.bintray.com/sbt/debian /" | sudo tee -a /etc/apt/sources.list.d/sbt.list
   fi
+  if [ ! -f /etc/apt/sources.list.d/vagrant.list ]; then
+    echo "deb http://download.virtualbox.org/virtualbox/debian $(lsb_release -cs) contrib" | sudo tee -a /etc/apt/sources.list.d/vagrant.list
+  fi
   sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 2EE0EA64E40A89B84B2DF73499E82A75642AC823
   curl -fsSL https://download.docker.com/linux/$(. /etc/os-release; echo "$ID")/gpg | sudo apt-key add -
+  curl -fsSl https://www.virtualbox.org/download/oracle_vbox_2016.asc | sudo apt-key add -
   sudo add-apt-repository \
        "deb [arch=amd64] https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") \
              zesty \
@@ -56,6 +60,7 @@ setup_debian () {
     gnupg2 \
     software-properties-common \
     curl \
+    jq \
     docker-ce \
     golang \
     openjdk-8-jdk \
@@ -68,7 +73,27 @@ setup_debian () {
     vim-gnome \
     stow \
     zsh \
-    tmux
+    tmux \
+    unzip \
+    virtualbox-5.2
+  # install terraform
+  terraform_url=$(curl https://releases.hashicorp.com/index.json | jq '{terraform}' | egrep "linux.*amd64" | sort --version-sort -r | head -1 | awk -F[\"] '{print $4}')
+  packer_url=$(curl https://releases.hashicorp.com/index.json | jq '{packer}' | egrep "linux.*amd64" | sort --version-sort -r | head -1 | awk -F[\"] '{print $4}')
+  vagrant_url=$(curl https://releases.hashicorp.com/index.json | jq '{vagrant}' | egrep "x86_64.*deb" | sort --version-sort -r | head -1 | awk -F[\"] '{print $4}')
+
+  echo "Downloading $terraform_url."
+  curl -o /tmp/terraform.zip $terraform_url
+  # Unzip and install
+  sudo unzip -o /tmp/terraform.zip -d /usr/local/bin
+
+  echo "Downloading $packer_url"
+  curl -o /tmp/packer.zip $packer_url
+  sudo unzip -o /tmp/packer.zip -d /usr/local/bin
+
+  echo "Downloading $vagrant_url"
+  curl -o /tmp/vagrant.deb $vagrant_url
+  sudo dpkg -i /tmp/vagrant.deb
+
   sudo getent group docker || (sudo groupadd docker && sudo usermod -aG docker $USER)
   sudo curl -L https://github.com/docker/compose/releases/download/1.18.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
   sudo chmod +x /usr/local/bin/docker-compose
