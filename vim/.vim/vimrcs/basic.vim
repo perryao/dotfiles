@@ -59,8 +59,15 @@ if has('mouse')
   set mouse=a
   set ttymouse=sgr        "fixes issue with mouse not working past 220th column"
 endif
-" set clipboard=unnamedplus
-set clipboard=unnamed
+
+if has("unix")
+  let s:uname = system("uname -s")
+  if s:uname == "Darwin"
+    set clipboard=unnamed
+  else
+    set clipboard=unnamedplus
+  endif
+endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Searching
