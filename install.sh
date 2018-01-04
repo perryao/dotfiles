@@ -94,6 +94,14 @@ setup_debian () {
   curl -o /tmp/vagrant.deb $vagrant_url
   sudo dpkg -i /tmp/vagrant.deb
 
+  echo "Downloading kubectl"
+  sudo curl -L -o /usr/local/bin/kubectl https://storage.googleapis.com/kubernetes-release/release/v1.9.0/bin/linux/amd64/kubectl
+  sudo chmod +x /usr/local/bin/kubectl
+
+  echo "Downloading kops"
+  sudo curl -L -o /usr/local/bin/kops https://github.com/kubernetes/kops/releases/download/1.7.0/kops-linux-amd64
+  sudo chmod +x /usr/local/bin/kops
+
   sudo getent group docker || (sudo groupadd docker && sudo usermod -aG docker $USER)
   sudo curl -L https://github.com/docker/compose/releases/download/1.18.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
   sudo chmod +x /usr/local/bin/docker-compose
