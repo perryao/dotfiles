@@ -71,6 +71,7 @@ setup_debian () {
     python-pip \
     python3-pip \
     vim-gnome \
+    silversearcher-ag \
     stow \
     zsh \
     tmux \
@@ -99,7 +100,7 @@ setup_debian () {
   sudo chmod +x /usr/local/bin/kubectl
 
   echo "Downloading kops"
-  sudo curl -L -o /usr/local/bin/kops https://github.com/kubernetes/kops/releases/download/1.7.0/kops-linux-amd64
+  sudo curl -L -o /usr/local/bin/kops https://github.com/kubernetes/kops/releases/download/1.8.0/kops-linux-amd64
   sudo chmod +x /usr/local/bin/kops
 
   sudo getent group docker || (sudo groupadd docker && sudo usermod -aG docker $USER)
