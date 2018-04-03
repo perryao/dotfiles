@@ -46,15 +46,23 @@ setup_debian () {
   if [ ! -f /etc/apt/sources.list.d/vagrant.list ]; then
     echo "deb http://download.virtualbox.org/virtualbox/debian $(lsb_release -cs) contrib" | sudo tee -a /etc/apt/sources.list.d/vagrant.list
   fi
+
+  if [ ! -f /etc/apt/sources.list.d/azure-cli.list ]; then
+    echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/azure-cli.list
+  fi
   sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 2EE0EA64E40A89B84B2DF73499E82A75642AC823
+  sudo apt-key adv --keyserver packages.microsoft.com --recv-keys 52E16F86FEE04B979B07E28DB02C46DF417A0893
   curl -fsSL https://download.docker.com/linux/$(. /etc/os-release; echo "$ID")/gpg | sudo apt-key add -
   curl -fsSl https://www.virtualbox.org/download/oracle_vbox_2016.asc | sudo apt-key add -
   sudo add-apt-repository \
        "deb [arch=amd64] https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") \
              zesty \
              stable"
+  sudo apt-add-repository ppa:ansible/ansible -y
   sudo apt-get update -y && sudo apt-get install -y \
+    ansible \
     apt-transport-https \
+    azure-cli \
     ca-certificates \
     curl \
     gnupg2 \

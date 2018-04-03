@@ -87,7 +87,8 @@ source $ZSH/oh-my-zsh.sh
 source ~/.oh-my-zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 export GOPATH=$HOME/go
-export PATH="$PATH:$GOPATH/bin"
+export PATH="$PATH:$GOPATH/bin:/usr/local/go/bin"
+export PATH=$PATH:~/.cargo/bin
 
 # auto launch tmux
 if [[ -z "$TMUX" ]]
@@ -137,3 +138,16 @@ esac
 checkport() {
   sudo lsof -n -i :$1| grep LISTEN
 }
+
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[[ -f /home/mike/n/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /home/mike/n/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[[ -f /home/mike/n/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /home/mike/n/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
+# added by travis gem
+[ -f /home/mike/.travis/travis.sh ] && source /home/mike/.travis/travis.sh
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/home/mike/.sdkman"
+[[ -s "/home/mike/.sdkman/bin/sdkman-init.sh" ]] && source "/home/mike/.sdkman/bin/sdkman-init.sh"

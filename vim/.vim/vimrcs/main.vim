@@ -1,5 +1,6 @@
 call plug#begin('~/.vim/plugged')
 
+Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh'  }
 Plug 'joshdick/onedark.vim'
 Plug 'tomasiser/vim-code-dark'
 Plug 'raphamorim/lucario'
@@ -26,6 +27,9 @@ Plug 'mustache/vim-mustache-handlebars'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'fatih/vim-go'
+Plug 'google/vim-maktaba'
+Plug 'bazelbuild/vim-bazel'
+Plug 'derekwyatt/vim-scala'
 Plug 'airblade/vim-gitgutter'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-markdown'

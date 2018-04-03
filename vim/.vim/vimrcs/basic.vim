@@ -95,6 +95,11 @@ set ffs=unix,dos,mac        " Use Unix as the standard file type
 set bg=dark
 colorscheme onedark         " Set colorscheme
 
+if &term =~ '256color'
+    " Disable Background Color Erase (BCE) so that color schemes
+    " work properly when Vim is used inside tmux and GNU screen.
+    set t_ut=
+endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs, windows and buffers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

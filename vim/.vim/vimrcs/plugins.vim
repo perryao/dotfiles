@@ -179,7 +179,7 @@ let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/
 " => vim-markdown-preview
 """""""""""""""""""""""""""""""""""
 let vim_markdown_preview_toggle=1
-let vim_markdown_preview_browser='FirefoxDeveloperEdition'
+let vim_markdown_preview_browser='Firefox'
 let vim_markdown_preview_temp_file=1
 let vim_markdown_preview_github=1
 
@@ -187,3 +187,6 @@ let vim_markdown_preview_github=1
 """vim terraform
 let g:terraform_align=1
 let g:terraform_fmt_on_save=1
+
+"""vim-go
+let g:go_fmt_command = "goimports"
