@@ -10,13 +10,9 @@ Plug 'tpope/vim-commentary'
 Plug 'w0rp/ale'
 Plug 'scrooloose/nerdtree'
 Plug 'jiangmiao/auto-pairs'
-Plug 'isRuslan/vim-es6'
-Plug 'pangloss/vim-javascript'
 Plug 'moll/vim-node'
 Plug 'udalov/kotlin-vim'
 Plug 'sjl/gundo.vim'
-Plug 'othree/es.next.syntax.vim'
-Plug 'othree/yajs.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'digitaltoad/vim-pug'
@@ -37,5 +33,13 @@ Plug 'JamshedVesuna/vim-markdown-preview'
 Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+
+" Syntax Highlighting
+Plug 'keith/swift.vim'
+Plug 'othree/es.next.syntax.vim'
+Plug 'othree/yajs.vim'
+Plug 'isRuslan/vim-es6'
+Plug 'pangloss/vim-javascript'
+
 
 call plug#end()
