@@ -1,0 +1,15 @@
+apt_repos:
+  - 'deb https://dl.bintray.com/sbt/debian /'
+  - 'deb http://download.virtualbox.org/virtualbox/debian {{ansible_distribution_release}} contrib'
+  - 'deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ {{ansible_distribution_release}} main'
+  - 'ppa:ansible/ansible'
+
+apt_keys:
+  - { id: '2EE0EA64E40A89B84B2DF73499E82A75642AC823', key_server: 'keyserver.ubuntu.com' } # sbt
+  - { id: '52E16F86FEE04B979B07E28DB02C46DF417A0893', key_server: 'packages.microsoft.com' }
+
+apt_packages:
+  - ansible
+  - azure-cli
+  - curl
+  - git
