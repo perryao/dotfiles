@@ -10,6 +10,26 @@ apt_keys:
 
 apt_packages:
   - ansible
+  - apt-transport-https
   - azure-cli
+  - ca-certificates
   - curl
+  - docker-ce
   - git
+  - gnupg2
+  - golang
+  - jq
+  - openjdk-8-jdk
+  - python
+  - python3
+  - python-pip
+  - python3-pip
+  - sbt
+  - scala
+  - silversearch-ag
+  - software-properties-common
+  - stow
+  - tmux
+  - unzip
+  - vim-gnome
+  - virtualbox-5.2
