@@ -87,7 +87,7 @@ source $ZSH/oh-my-zsh.sh
 source ~/.oh-my-zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 export GOPATH=$HOME/go
-export PATH="$PATH:$GOPATH/bin:/usr/local/go/bin"
+export PATH="$GOPATH/bin:/usr/local/go/bin:$PATH"
 export PATH=$PATH:~/.cargo/bin
 
 # auto launch tmux

@@ -13,6 +13,7 @@ map <leader>nf :NERDTreeFind<cr>
 """""""""""""""""""""""""""""""
 " => Vim GitGutter
 """""""""""""""""""""""""""""""
+let g:gitgutter_terminal_reports_focus=0
 
 """""""""""""""""""""""""""""""
 " => The Silver Searcher
@@ -110,6 +111,7 @@ let g:ctrlp_cmd = 'CtrlP'
 let g:goyo_width = 120
 function! s:goyo_enter()
   colorscheme pencil
+  set background=light
   highlight Normal ctermfg=black
   silent !tmux set status off
   silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
@@ -122,6 +124,7 @@ endfunction
 
 function! s:goyo_leave()
   colorscheme onedark
+  set background=dark
   silent !tmux set status on
   silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
   set list
@@ -175,6 +178,7 @@ let g:limelight_priority = -1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " let g:airline_theme='solarized-dark'
 "
+let g:airline_theme='one'
 """""""""""""""""""""""""""""""""""
 " => vim-markdown-preview
 """""""""""""""""""""""""""""""""""
@@ -190,3 +194,10 @@ let g:terraform_fmt_on_save=1
 
 """vim-go
 let g:go_fmt_command = "goimports"
+
+let g:go_highlight_functions = 1
+let g:go_highlight_function_arguments = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_generate_tags = 1

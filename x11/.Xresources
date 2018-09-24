@@ -1,4 +1,4 @@
-Xft.dpi: 180
+Xft.dpi: 220
 Xft.autohint: 0
 Xft.lcdfilter: lcddefault
 Xft.hintstyle: hintfull
@@ -11,7 +11,7 @@ URxvt.perl-ext-common: default,matcher,selection-to-clipboard
 /* URxvt.tabbed.autohide: true */
 
 ! Pretty font
-URxvt.font: xft:Cousine:size=10
+URxvt.font: xft:Cousine:size=12
 
 ! No scrollbar
 URxvt.scrollBar: false
@@ -32,6 +32,7 @@ URxvt.url-launcher: google-chrome-beta
 ! Remove if not using tmux
 URxvt.saveLines: 0
 
+URxvt*skipBuiltinGlyphs:    true
 
 ! special
 *.foreground:   #c5c8c6
