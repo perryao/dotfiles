@@ -4,9 +4,22 @@ Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' 
 
 " Themes
 Plug 'joshdick/onedark.vim'
+Plug 'sonph/onehalf', { 'rtp': 'vim/' }
 Plug 'reedes/vim-colors-pencil'
+Plug 'logico-dev/typewriter'
+Plug 'altercation/vim-colors-solarized'
+
+" Writing
+Plug 'reedes/vim-pencil'
+Plug 'reedes/vim-wordy'
+Plug 'reedes/vim-lexical'
+Plug 'kana/vim-textobj-user'
+Plug 'reedes/vim-textobj-quote'
+Plug 'reedes/vim-textobj-sentence'
+Plug 'reedes/vim-litecorrect'
 
 " Tools
+Plug 'benmills/vimux'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'tpope/vim-commentary'
 Plug 'w0rp/ale'

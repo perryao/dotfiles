@@ -27,6 +27,8 @@ if executable('ag')
 
   " ag is fast enough that CtrlP doesn't need to cache
   let g:ctrlp_use_caching = 0
+  " Close NERDTree window
+  let g:ctrlp_dont_split = 'NERD'
 
   " bind K to grep word under cursor
   nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
@@ -138,29 +140,52 @@ autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
 map <leader>go :Goyo<cr>
 
+"""""""""""""""
+" => Pencil
+"""""""""""
+augroup pencil
+  autocmd!
+  "
+  " Apply for Markdown and reStructuredText
+  autocmd FileType markdown,mkd,md,rst,asciidoc call pencil#init({'wrap': 'hard', 'autoformat': 1, 'textwidth': 120})
+                              \ | call lexical#init()
+                              \ | call litecorrect#init()
+                              \ | call textobj#quote#init()
+                              \ | call textobj#sentence#init()
+  autocmd FileType markdown,mkd,md call SetMarkdownOptions() 
+augroup END
+
+function SetMarkdownOptions()
+  setlocal spell spelllang=en_us
+  " surround for markdown links
+  nmap <leader>l <Plug>Ysurroundiw]%a(<C-R>*)<Esc>
+endfunction
 """"""""""""""""""""""""""""""""""
 " => limelight
 """"""""""""""""""""""""""""""""""
 " Color name (:help cterm-colors) or ANSI code
-let g:limelight_conceal_ctermfg = 'gray'
+let g:limelight_conceal_ctermfg = 'Grey'
 
-" Color name (:help gui-colors) or RGB color
-let g:limelight_conceal_guifg = 'DarkGray'
+" " Color name (:help gui-colors) or RGB color
+" let g:limelight_conceal_guifg = 'DarkGray'
 
-" Default: 0.5
+" " Default: 0.5
 let g:limelight_default_coefficient = 0.7
 
-" Number of preceding/following paragraphs to include (default: 0)
-" let g:limelight_paragraph_span = 1
+" " Number of preceding/following paragraphs to include (default: 0)
+" " let g:limelight_paragraph_span = 1
 
-" Beginning/end of paragraph
-"   When there's no empty line between the paragraphs
-"   and each paragraph starts with indentation
-let g:limelight_bop = '^\s'
-let g:limelight_eop = '\ze\n^\s'
+" " Beginning/end of paragraph
+" "   When there's no empty line between the paragraphs
+" "   and each paragraph starts with indentation
+" let g:limelight_bop = '^\s'
+" let g:limelight_eop = '\ze\n^\s'
+let g:limelight_bop = '^.*$'
+let g:limelight_eop = '\n'
+let g:limelight_paragraph_span = 0
 
-" Highlighting priority (default: 10)
-"   Set it to -1 not to overrule hlsearch
+" " Highlighting priority (default: 10)
+" "   Set it to -1 not to overrule hlsearch
 let g:limelight_priority = -1
 
 
@@ -178,7 +203,7 @@ let g:limelight_priority = -1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " let g:airline_theme='solarized-dark'
 "
-let g:airline_theme='one'
+let g:airline_theme='onehalfdark'
 """""""""""""""""""""""""""""""""""
 " => vim-markdown-preview
 """""""""""""""""""""""""""""""""""
@@ -204,3 +229,11 @@ let g:go_highlight_function_calls = 1
 let g:go_highlight_types = 1
 let g:go_highlight_fields = 1
 let g:go_highlight_generate_tags = 1
+
+let g:ale_fix_on_save = 1
+" Fix files with prettier, and then ESLint.
+let g:ale_fixers = ['eslint']
+
+" Vimux
+map <Leader>vp :VimuxPromptCommand<CR>
+map <Leader>vl :VimuxRunLastCommand<CR>
