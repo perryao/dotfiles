@@ -147,7 +147,7 @@ augroup pencil
   autocmd!
   "
   " Apply for Markdown and reStructuredText
-  autocmd FileType markdown,mkd,md,rst,asciidoc call pencil#init({'wrap': 'hard', 'autoformat': 1, 'textwidth': 120})
+  autocmd FileType markdown,mkd,md,rst,asciidoc call pencil#init({'wrap': 'soft'})
                               \ | call lexical#init()
                               \ | call litecorrect#init()
                               \ | call textobj#quote#init()
@@ -160,6 +160,21 @@ function SetMarkdownOptions()
   " surround for markdown links
   nmap <leader>l <Plug>Ysurroundiw]%a(<C-R>*)<Esc>
 endfunction
+
+let g:pencil#autoformat_config = {
+        \   'markdown': {
+        \     'black': [
+        \       'htmlH[0-9]',
+        \       'markdown(Code|H[0-9]|Url|IdDeclaration|Link|Rule|Highlight[A-Za-z0-9]+)',
+        \       'markdown(FencedCodeBlock|InlineCode)',
+        \       'mkd(Code|Rule|Delimiter|Link|ListItem|IndentCode)',
+        \       'mmdTable[A-Za-z0-9]*',
+        \     ],
+        \     'white': [
+        \      'markdown(Code|Link)',
+        \     ],
+        \   },
+        \ }
 """"""""""""""""""""""""""""""""""
 " => limelight
 """"""""""""""""""""""""""""""""""
