@@ -1,14 +1,5 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Nerd Tree
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:NERDTreeWinPos = "left"
-let NERDTreeShowHidden=1
-let NERDTreeCascadeSingleChildDir=0
-let NERDTreeIgnore = ['\.pyc$', '__pycache__']
-let g:NERDTreeWinSize=35
-map <leader>nn :NERDTreeToggle<cr>
-map <leader>nb :NERDTreeFromBookmark
-map <leader>nf :NERDTreeFind<cr>
+" open netrw
+map <leader>nn :Ex<cr>
 
 """""""""""""""""""""""""""""""
 " => Vim GitGutter
@@ -47,52 +38,6 @@ let g:bufExplorerShowRelativePath=1
 let g:bufExplorerFindActive=1
 let g:bufExplorerSortBy='name'
 map <leader>o :BufExplorer<cr>
-
-"""""""""""""""""""""""""""""
-" => Syntastic
-"""""""""""""""""""""""""""""
-" set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
-" set statusline+=%*
-
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_loc_list_height = 5
-" let g:syntastic_auto_loc_list = 0
-" let g:syntastic_check_on_open = 1
-" let g:syntastic_check_on_wq = 1
-" let g:syntastic_javascript_checkers = ['eslint']
-
-" let g:syntastic_error_symbol = 'x'
-" let g:syntastic_style_error_symbol = '⁉️'
-" let g:syntastic_warning_symbol = '?'
-" let g:syntastic_style_warning_symbol = '?'
-
-" highlight link SyntasticErrorSign SignColumn
-" highlight link SyntasticWarningSign SignColumn
-" highlight link SyntasticStyleErrorSign SignColumn
-" highlight link SyntasticStyleWarningSign SignColumn
-
-" Syntastic local linter support
-" let g:syntastic_javascript_checkers = []
-" function CheckJavaScriptLinter(filepath, linter)
-"   if exists('b:syntastic_checkers')
-"     return
-"   endif
-"   if filereadable(a:filepath)
-"     let b:syntastic_checkers = [a:linter]
-"     let {'b:syntastic_' . a:linter . '_exec'} = a:filepath
-"   endif
-" endfunction
-
-" function SetupJavaScriptLinter()
-"   let l:current_folder = expand('%:p:h')
-"   let l:bin_folder = fnamemodify(syntastic#util#findFileInParent('package.json', l:current_folder), ':h')
-"   let l:bin_folder = l:bin_folder . '/node_modules/.bin/'
-"   call CheckJavaScriptLinter(l:bin_folder . 'standard', 'standard')
-"   call CheckJavaScriptLinter(l:bin_folder . 'eslint', 'eslint')
-" endfunction
-
-" autocmd FileType javascript call SetupJavaScriptLinter()
 
 """""""""""""""""""""""""""""""""
 " => gundo
@@ -181,20 +126,9 @@ let g:pencil#autoformat_config = {
 " Color name (:help cterm-colors) or ANSI code
 let g:limelight_conceal_ctermfg = 'Grey'
 
-" " Color name (:help gui-colors) or RGB color
-" let g:limelight_conceal_guifg = 'DarkGray'
-
 " " Default: 0.5
 let g:limelight_default_coefficient = 0.7
 
-" " Number of preceding/following paragraphs to include (default: 0)
-" " let g:limelight_paragraph_span = 1
-
-" " Beginning/end of paragraph
-" "   When there's no empty line between the paragraphs
-" "   and each paragraph starts with indentation
-" let g:limelight_bop = '^\s'
-" let g:limelight_eop = '\ze\n^\s'
 let g:limelight_bop = '^.*$'
 let g:limelight_eop = '\n'
 let g:limelight_paragraph_span = 0
@@ -202,16 +136,6 @@ let g:limelight_paragraph_span = 0
 " " Highlighting priority (default: 10)
 " "   Set it to -1 not to overrule hlsearch
 let g:limelight_priority = -1
-
-
-""""""""""""""""""""""""""""""""""
-" => youcompleteme
-""""""""""""""""""""""""""""""""""
-" let g:ycm_key_list_select_completion = ['<ENTER>', '<TAB>', '<Down>']
-" autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-" let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
-" let g:ycm_key_list_select_completion   = ['<C-j>', '<C-n>', '<Down>']
-" let g:ycm_key_list_previous_completion = ['<C-k>', '<C-p>', '<Up>']
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim-airline config
@@ -237,7 +161,9 @@ let g:terraform_fmt_on_save=1
 
 """vim-go
 let g:go_fmt_command = "goimports"
-
+let g:go_list_type = "quickfix"
+let g:go_info_mode = "gocode"
+let g:go_def_mode = "gopls"
 let g:go_highlight_functions = 1
 let g:go_highlight_function_arguments = 1
 let g:go_highlight_function_calls = 1
@@ -245,10 +171,85 @@ let g:go_highlight_types = 1
 let g:go_highlight_fields = 1
 let g:go_highlight_generate_tags = 1
 
-let g:ale_fix_on_save = 1
+" Open :GoDeclsDir with ctrl-g
+nmap <C-g> :GoDeclsDir<cr>
+imap <C-g> <esc>:<C-u>GoDeclsDir<cr>
+
+
+augroup go
+  autocmd!
+
+  " Show by default 4 spaces for a tab
+  autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
+
+  " :GoBuild and :GoTestCompile
+  autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
+
+  " :GoTest
+  autocmd FileType go nmap <leader>t  <Plug>(go-test)
+
+  " :GoRun
+  autocmd FileType go nmap <leader>r  <Plug>(go-run)
+
+  " :GoDoc
+  autocmd FileType go nmap <Leader>d <Plug>(go-doc)
+
+  " :GoCoverageToggle
+  autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
+
+  " :GoInfo
+  autocmd FileType go nmap <Leader>i <Plug>(go-info)
+
+  " :GoMetaLinter
+  autocmd FileType go nmap <Leader>l <Plug>(go-metalinter)
+
+  " :GoDef but opens in a vertical split
+  autocmd FileType go nmap <Leader>v <Plug>(go-def-vertical)
+  " :GoDef but opens in a horizontal split
+  autocmd FileType go nmap <Leader>s <Plug>(go-def-split)
+
+  " :GoAlternate  commands :A, :AV, :AS and :AT
+  autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
+  autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
+  autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
+  autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
+augroup END
+
+" build_go_files is a custom function that builds or compiles the test file.
+" It calls :GoBuild if its a Go file, or :GoTestCompile if it's a test file
+function! s:build_go_files()
+  let l:file = expand('%')
+  if l:file =~# '^\f\+_test\.go$'
+    call go#test#Test(0, 1)
+  elseif l:file =~# '^\f\+\.go$'
+    call go#cmd#Build(0)
+  endif
+endfunction
+" let g:ale_fix_on_save = 1
+" let g:ale_completion_enabled = 1
 " Fix files with prettier, and then ESLint.
-let g:ale_fixers = ['eslint']
+let g:ale_fixers = {
+\ 'javascript': ['eslint'],
+\}
 
 " Vimux
 map <Leader>vp :VimuxPromptCommand<CR>
 map <Leader>vl :VimuxRunLastCommand<CR>
+
+if executable('metals-vim')
+  au User lsp_setup class lsp#register_server({
+    \ 'name': 'metals-vim',
+    \ 'cmd': {server_info->['metals-vim']},
+    \ 'whitelist': ['scala'],
+    \ })
+  " metals doesn't have autocomplete yet
+  " autocmd FileType go setlocal omnifunc=lsp#complete
+endif
+
+" ==================== Completion + Snippet ====================
+" Ultisnips has native support for SuperTab. SuperTab does omnicompletion by
+" pressing tab. I like this better than autocompletion, but it's still fast.
+let g:SuperTabDefaultCompletionType = "context"
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"  
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>" 

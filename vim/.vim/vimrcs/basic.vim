@@ -28,7 +28,6 @@ command W w !sudo tee % > /dev/null
 
 " Set to auto read when a file is changed from the outside
 set autoread
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -49,8 +48,9 @@ set lazyredraw              " Don't redraw while executing macros (good performa
 set number                  " show line numbers
 set showcmd                 " show command in bottom bar
 set nocursorline            " highlight current line
+set nocursorcolumn           " speed up syntax highlighting
 set list                    " show whitespace
-set listchars+=space:.,tab:➝\ 
+set listchars=space:.,tab:➝\ 
 " configure backspace so it acts as it should
 set backspace=indent,eol,start
 set whichwrap+=<,>,h,l
@@ -69,6 +69,12 @@ if has("unix")
   endif
 endif
 
+let g:netrw_banner = 0
+
+" Source (reload configuration)
+nnoremap <silent> <F5> :source $MYVIMRC<CR>
+
+" let g:netrw_liststyle = 3 " tree
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Searching
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -93,7 +99,8 @@ syntax enable
 set encoding=utf8           " Set utf8 as standard encoding and en_US as the standard language
 set ffs=unix,dos,mac        " Use Unix as the standard file type
 set bg=dark
-colorscheme onedark         " Set colorscheme
+" colorscheme onehalfdark         " Set colorscheme
+colorscheme onedark
 
 if &term =~ '256color'
     " Disable Background Color Erase (BCE) so that color schemes
@@ -162,61 +169,6 @@ set nobackup
 set nowb
 set noswapfile
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => netrw - file navigation
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"Open netrw in resume explore
-" nnoremap <leader>nf :call VexToggle(getcwd())<CR>
-" nnoremap <leader>n :call VexToggle("")<cr>
-" let g:netrw_banner = 0
-" let g:netrw_liststyle=3
-" let g:netrw_preview = 1
-" let g:netrw_dirhistmax=0
-
-" fun! VexToggle(dir)
-"     if exists("t:vex_buf_nr")
-"         call VexClose()
-"     else
-"         call VexOpen(a:dir)
-"     endif
-" endf
-
-" fun! VexOpen(dir)
-"     let g:netrw_browse_split=4 " open files in previous window
-"     let vex_width = 25
-
-"     execute "Vexplore " . a:dir
-"     let t:vex_buf_nr = bufnr("%")
-"     wincmd H
-
-"     call VexSize(vex_width)
-" endf
-
-" fun! VexClose()
-"     let cur_win_nr = winnr()
-"     let target_nr = ( cur_win_nr == 1 ? winnr("#") : cur_win_nr )
-
-"     1wincmd w
-"     close
-"     unlet t:vex_buf_nr
-
-"     execute (target_nr - 1) . "wincmd w"
-"     call NormalizeWidths()
-" endf
-
-" fun! VexSize(vex_width)
-"     execute "vertical resize" . a:vex_width
-"     set winfixwidth
-"     call NormalizeWidths()
-" endf
-
-" fun! NormalizeWidths()
-"     let eadir_pref = &eadirection
-"     set eadirection=hor
-"     set equalalways! equalalways!
-"     let &eadirection = eadir_pref
-" endf
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Turn persistent undo on 
 "    means that you can undo even when you close a buffer/VIM
@@ -250,8 +202,11 @@ map <leader>jsf :%!python -m json.tool<cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Toggle paste mode on and off
 map <leader>pp :setlocal paste!<cr>
+set completeopt=menu,menuone
+set completeopt+=preview
 " Close preview window after auto completion
-autocmd CompleteDone * pclose
+autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+" autocmd CompleteDone * pclose
 
 " Return to last edit position when opening files (You want this!)
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
@@ -322,4 +277,3 @@ function! <SID>BufcloseCloseIt()
     execute("bdelete!".l:currentBufNum)
   endif
 endfunction
-
