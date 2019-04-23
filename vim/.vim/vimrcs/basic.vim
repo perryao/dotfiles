@@ -23,6 +23,8 @@ nmap <leader>w :w!<cr>
 " (useful for handling the permission-denied error)
 command W w !sudo tee % > /dev/null
 
+" split panes below current buffer
+set splitbelow
 " place cursor between braces
 " inoremap { {<CR><BS>}<Esc>ko
 
@@ -55,8 +57,8 @@ set listchars=space:.,tab:➝\
 set backspace=indent,eol,start
 set whichwrap+=<,>,h,l
 " In many terminal emulators the mouse works just fine, thus enable it.
-if has('mouse')
-  set mouse=a
+set mouse=a
+if !has('nvim') && has('mouse')
   set ttymouse=sgr        "fixes issue with mouse not working past 220th column"
 endif
 

@@ -17,6 +17,7 @@ Plug 'reedes/vim-textobj-sentence'
 Plug 'reedes/vim-litecorrect'
 
 " Tools
+Plug 'scrooloose/nerdtree'
 Plug 'w0rp/ale'
 Plug 'benmills/vimux'
 Plug 'jlanzarotta/bufexplorer'
@@ -32,17 +33,19 @@ Plug 'JamshedVesuna/vim-markdown-preview'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tmux-plugins/vim-tmux-focus-events'
-Plug 'SirVer/ultisnips'
-Plug 'ervandew/supertab'
+" Plug 'SirVer/ultisnips'
+" Plug 'ervandew/supertab'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
+Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+Plug 'vimlab/split-term.vim'
 
 
 " Language Plugins + Syntax
 Plug 'posva/vim-vue'
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'tpope/vim-markdown'
 Plug 'keith/swift.vim'
 Plug 'othree/es.next.syntax.vim'
