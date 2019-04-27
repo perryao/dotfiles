@@ -21,10 +21,11 @@ nmap <leader>w :w!<cr>
 
 " :W sudo saves the file 
 " (useful for handling the permission-denied error)
-command W w !sudo tee % > /dev/null
+command! W w !sudo tee % > /dev/null
 
 " split panes below current buffer
 set splitbelow
+set splitright
 " place cursor between braces
 " inoremap { {<CR><BS>}<Esc>ko
 
@@ -72,12 +73,13 @@ if has("unix")
 endif
 
 let g:netrw_banner = 0
+" let g:netrw_liststyle = 3 " tree
 
 " Source (reload configuration)
 nnoremap <silent> <F5> :source $MYVIMRC<CR>
+set cmdheight=2 "better display height coc.vim
 
-" let g:netrw_liststyle = 3 " tree
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Searching
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set showmatch               " higlight matching parenthesis
@@ -101,8 +103,7 @@ syntax enable
 set encoding=utf8           " Set utf8 as standard encoding and en_US as the standard language
 set ffs=unix,dos,mac        " Use Unix as the standard file type
 set bg=dark
-" colorscheme onehalfdark         " Set colorscheme
-colorscheme onedark
+colorscheme codedark        " Set colorscheme
 
 if &term =~ '256color'
     " Disable Background Color Erase (BCE) so that color schemes
@@ -140,19 +141,8 @@ map <leader>cd :cd %:p:h<cr>:pwd<cr>
 """"""""""""""""""""""""""""""
 " => Status line
 """""""""""""""""""""""""""""""
-" Always show the status line
+" Always show the status line (vim-airline)
 set laststatus=2
-
-" Format the status line
-" set statusline=\%{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
-
-" Returns true if paste mode is enabled
-function! HasPaste()
-  if &paste
-    return 'PASTE MODE  '
-  endif
-  return ''
-endfunction
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Sounds
@@ -204,8 +194,7 @@ map <leader>jsf :%!python -m json.tool<cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Toggle paste mode on and off
 map <leader>pp :setlocal paste!<cr>
-set completeopt=menu,menuone
-set completeopt+=preview
+set completeopt=menu,menuone,preview,noselect,noinsert
 " Close preview window after auto completion
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 " autocmd CompleteDone * pclose
