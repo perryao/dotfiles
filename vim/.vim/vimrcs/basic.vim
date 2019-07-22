@@ -103,7 +103,7 @@ syntax enable
 set encoding=utf8           " Set utf8 as standard encoding and en_US as the standard language
 set ffs=unix,dos,mac        " Use Unix as the standard file type
 set bg=dark
-colorscheme codedark        " Set colorscheme
+colorscheme gruvbox        " Set colorscheme
 
 if &term =~ '256color'
     " Disable Background Color Erase (BCE) so that color schemes

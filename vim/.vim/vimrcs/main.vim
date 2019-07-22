@@ -4,7 +4,10 @@ call plug#begin('~/.vim/plugged')
 " this theme gives an atom-like appearance
 " Plug 'joshdick/onedark.vim'
 " this theme gives a vscode-like appearance
-Plug 'perryao/vim-code-dark'
+" Plug 'perryao/vim-code-dark'
+Plug 'tomasiser/vim-code-dark'
+Plug 'morhetz/gruvbox'
+Plug 'dunstontc/vim-vscode-theme'
 Plug 'reedes/vim-colors-pencil'
 
 " Writing
@@ -26,7 +29,7 @@ Plug 'benmills/vimux'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'SirVer/ultisnips'
-Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'simnalamburt/vim-mundo' " visualize the undo tree (a fork of gundo with support for neovim)
 Plug 'easymotion/vim-easymotion'
 Plug 'junegunn/goyo.vim'
@@ -46,6 +49,7 @@ Plug 'ryanoasis/vim-devicons' "fancy icons. load after nerdtree and ctrlp
 
 " Language Plugins + Syntax
 Plug 'posva/vim-vue'
+Plug 'mattn/emmet-vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'tpope/vim-markdown'
 Plug 'keith/swift.vim'
@@ -61,6 +65,7 @@ Plug 'mustache/vim-mustache-handlebars'
 Plug 'digitaltoad/vim-pug'
 Plug 'moll/vim-node'
 Plug 'udalov/kotlin-vim'
-Plug 'leafgarland/typescript-vim'
+Plug 'HerringtonDarkholme/yats.vim'
+" Plug 'leafgarland/typescript-vim'
 Plug 'tsandall/vim-rego'
 call plug#end()

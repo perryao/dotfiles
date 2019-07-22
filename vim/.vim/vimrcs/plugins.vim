@@ -150,7 +150,7 @@ let g:limelight_priority = -1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim-airline config
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:airline_theme='codedark'
+let g:airline_theme='gruvbox'
 let g:airline_powerline_fonts = 1
 let g:WebDevIconsNerdTreeBeforeGlyphPadding = ""
 let g:WebDevIconsUnicodeDecorateFolderNodes = v:true
@@ -189,6 +189,8 @@ map <Leader>vl :VimuxRunLastCommand<CR>
 
 " ultisnips
 let g:UltiSnipsExpandTrigger="<c-j>" "remove conflict with coc.vim tab expandsion
+
+let g:user_emmet_leader_key=','
 
 ""vim-go
 let g:go_auto_type_info = 0
@@ -264,6 +266,10 @@ function! s:build_go_files()
   endif
 endfunction
 
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
 " coc.vim
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
