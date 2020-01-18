@@ -190,7 +190,7 @@ map <Leader>vl :VimuxRunLastCommand<CR>
 " ultisnips
 let g:UltiSnipsExpandTrigger="<c-j>" "remove conflict with coc.vim tab expandsion
 
-let g:user_emmet_leader_key=','
+" let g:user_emmet_leader_key=','
 
 ""vim-go
 let g:go_auto_type_info = 0
@@ -253,6 +253,11 @@ augroup go
   autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
   autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
   autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
+augroup END
+
+augroup scala
+  autocmd BufWritePre *.scala :call CocAction('format')
+  autocmd BufWritePre *.scala :SortScalaImports
 augroup END
 
 " build_go_files is a custom function that builds or compiles the test file.
