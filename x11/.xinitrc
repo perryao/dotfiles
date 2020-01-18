@@ -6,7 +6,6 @@ xset +fp ~/.local/share/fonts/
 # exec cinnamon-session
 # exec i3 -V >> ~/i3log-$(date + '%F-%k-%M-%S') 2>&1
 # parallels tools
-prlcc &
 exec i3
 
 # export XDG_CURRENT_DESKTOP=Budgie:GNOME
