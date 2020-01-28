@@ -2,7 +2,7 @@
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set nocompatible " vim only
-set nomodeline
+set modeline
 filetype indent on  " load filetype-specific indent files
 filetype plugin on
 
