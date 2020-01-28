@@ -11,7 +11,7 @@
 
 set $mod Mod4
 
-set $ws1 "  1:    "
+set $ws1 "  1:    "
 set $ws2 "  2:    "
 set $ws3 "  3:    "
 set $ws4 "  4:    "
@@ -60,9 +60,7 @@ bindsym $mod+Shift+q kill
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
 
-bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
-# bindsym $mod+Tab  exec --no-startup-id rofi -show window -lines 3 -eh 2 -fullscreen -padding 700 -font "System San Francisco Display 30"
-# bindsym $mod+d exec --no-startup-id rofi -show drun -lines 3 -eh 2 -fullscreen -padding 700 -font "System San Francisco Display 30"
+bindsym $mod+d exec --no-startup-id ~/.config/polybar/scripts/elementary-menu-alt
 
 # change focus
 bindsym $mod+h focus left
@@ -155,14 +153,9 @@ bindsym $mod+Shift+e exec i3-msg exit
 bindsym Control+Print exec gnome-screenshot -i
 
 # bind i3lock
-bindsym $mod+x exec i3lock
-exec --no-startup-id xautolock -detectsleep -time 10 -notify 30 -notifier "notify-send -u critical -t 10000 -- 'LOCKING screen in 30 seconds'" -locker i3lock
-
-# set wallpaper
-# exec --no-startup-id feh --bg-fill ~/.i3/wallpaper/water_mountains_landscape.jpg
-# exec --no-startup-id feh --randomize --bg-fill ~/.i3/wallpaper/*
-exec --no-startup-id feh --randomize --bg-fill /usr/share/backgrounds/gnome/*
-exec --no-startup-id nm-applet
+# bindsym $mod+x exec i3lock
+exec --no-startup-id xautolock -detectsleep -time 10 -notify 30 -notifier "notify-send -u critical -t 10000 -- 'LOCKING screen in 30 seconds'" -locker i3lock-fancy -p -g
+bindsym $mod+x exec --no-startup-id i3lock-fancy -p -g
 
 # playback keys
 bindsym XF86AudioPlay exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause"
@@ -239,23 +232,6 @@ set $aqua #689d68
 set $gray #a89984
 set $darkgray #1d2021
 
-bar {
-    font xft: System San Francisco Display, FontAwesome 6
-    position top
-    height 40
-    status_command i3blocks
-    colors {
-        separator $bg
-        background $bg
-        statusline $yellow
-        #                    border  backgr. text
-        focused_workspace    $aqua $aqua $darkgray
-        inactive_workspace   $darkgray $darkgray $yellow
-        active_workspace     $darkgray $darkgray $yellow
-        urgent_workspace     $red $red $bg
-    }
-}
-
 
 #start of window title bars & borders section
 
@@ -288,4 +264,4 @@ mode "$mode_display" {
 }
 # Declare here the shortcut to bring the display selection menu
 bindsym $mod+Shift+x mode "$mode_display"
-# exec --no-startup-id compton -b
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
