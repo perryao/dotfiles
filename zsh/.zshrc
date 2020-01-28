@@ -56,6 +56,7 @@ plugins=(
   git 
   tmux
   kubectl
+  z
 )
 if [ $commands[fzf] ]; then
   export FZF_BASE=$(which fzf)
@@ -98,8 +99,10 @@ source $ZSH/oh-my-zsh.sh
 #
 alias v="/usr/local/bin/nvim"
 alias v.="/usr/local/bin/nvim ."
-source ~/.oh-my-zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
+# source ~/.oh-my-zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 export GOPATH=$HOME/go
 export PATH="$GOPATH/bin:/usr/local/go/bin:$PATH"
 export PATH=$PATH:~/.cargo/bin
