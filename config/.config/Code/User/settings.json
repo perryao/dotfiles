@@ -13,7 +13,9 @@
         "enabled": false,
         "args": []
     },
+    "vim.camelCaseMotion.enable": false,
     "vim.easymotion": true,
+    "vim.vimrc.enable": false,
     "vim.sneak": true,
     "vim.incsearch": true,
     "vim.useSystemClipboard": true,
@@ -27,6 +29,12 @@
     ],
     "vim.normalModeKeyBindingsNonRecursive": [
         {
+            "before": ["<leader>", "w"],
+            "commands": [
+                "workbench.action.files.save",
+            ]
+        },
+        {
             "before": ["<leader>", "d"],
             "after": ["d", "d"]
         },
@@ -35,16 +43,22 @@
             "commands": [":nohl"]
         },
         {
-            "before": [":"],
+            "before": [";"],
             "commands": [
                 "workbench.action.showCommands",
             ]
         },
         {
-            "before": ["<leader", "n"],
-            "commands": [
-                "workbench.action.toggleSidebarVisibility",
-            ]
+            "before": ["<leader>", "n", "n"],
+            "commands": ["workbench.action.toggleSidebarVisibility"]
+        },
+        {
+            "before": ["<leader>", "n", "f"],
+            "commands": ["workbench.view.explorer"]
+        },
+        {
+            "before": ["<leader>", "o"],
+            "commands": ["workbench.action.quickOpen"]
         }
     ],
     "vim.leader": ",",
