@@ -213,11 +213,7 @@ new_window pixel 3
 smart_gaps on
 smart_borders on
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-
-# exec --no-startup-id yabar
-# exec --no-startup-id xfce4-panel --disable-wm-check  
+exec --no-startup-id $HOME/.config/polybar/scripts/style -elementary_light
 
 #######
 #THEME#
