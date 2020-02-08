@@ -73,7 +73,9 @@ if has("unix")
 endif
 
 let g:netrw_banner = 0
-" let g:netrw_liststyle = 3 " tree
+let g:netrw_liststyle = 0 " default
+let g:netrw_browse_split = 0
+let g:netrw_winsize = 25
 
 " Source (reload configuration)
 nnoremap <silent> <F5> :source $MYVIMRC<CR>
@@ -103,7 +105,9 @@ syntax enable
 set encoding=utf8           " Set utf8 as standard encoding and en_US as the standard language
 set ffs=unix,dos,mac        " Use Unix as the standard file type
 set bg=dark
-colorscheme gruvbox        " Set colorscheme
+if has_key(g:plugs, 'gruvbox') && isdirectory(g:plugs['gruvbox'].dir)
+  colorscheme gruvbox        " Set colorscheme
+endif
 
 if &term =~ '256color'
     " Disable Background Color Erase (BCE) so that color schemes
