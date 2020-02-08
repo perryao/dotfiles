@@ -30,6 +30,7 @@ alias v.="/usr/local/bin/nvim ."
 export GOPATH=$HOME/go
 export PATH="$GOPATH/bin:/usr/local/go/bin:$PATH"
 export PATH=$PATH:~/.cargo/bin
+export PATH=~/.npm-global/bin:$PATH
 
 export_proxy_vars() {
   export http_proxy=http://localhost:3128
