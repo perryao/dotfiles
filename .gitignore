@@ -2,3 +2,5 @@ vim/.vim/.netrwhist
 vim/.vim/autoload/plug.vim
 vim/.vim/plugged/*
 vim/.vim/temp_dirs
+config/.config/Code
+!config/.config/Code/User/settings.json
