@@ -1,5 +1,6 @@
 {
   "suggest.enablePreview": true,
+  "coc.preferences.formatOnSaveFiletypes": ["javascript", "typescript", "css", "markdown"],
   "languageserver": {
     "golang": {
       "command": "gopls",

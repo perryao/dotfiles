@@ -64,6 +64,8 @@
     "vim.leader": ",",
     "vim.handleKeys": {
         "<C-a>": false,
-        "<C-f>": false
+        "<C-f>": false,
+        "<C-b>": false,
+        "<C-w>": false
     }
 }
