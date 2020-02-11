@@ -11,7 +11,7 @@ RUN pacman -Syyu --noconfirm \
 
 WORKDIR /root
 
-COPY config/.config/nvim vim ./
+# COPY config/.config/nvim vim ./
 # 1. install all plugins
 # nvim -u init.vim --headless +PlugInstall +qall
 # 2. test base startuptime
