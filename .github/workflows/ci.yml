@@ -7,4 +7,4 @@ jobs:
     steps:
     - name: startuptime
       id: startuptime
-      uses: actions/vim-startuptime-action@v1
+      uses: ./.github/actions/vim
