@@ -5,6 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Tests vimrc
     steps:
-    - name: startuptime
-      id: startuptime
-      uses: ./.github/actions/vim
+      - uses: actions/checkout@v2
+      - name: startuptime
+        id: startuptime
+        uses: ./.github/actions/vim
