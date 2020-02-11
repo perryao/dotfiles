@@ -4,4 +4,4 @@ inputs: {}
 outputs: {}
 runs:
   using: 'docker'
-  image: '../../../Dockerfile.nvim'
+  image: '../../../Dockerfile'
