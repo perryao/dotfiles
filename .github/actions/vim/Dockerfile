@@ -6,6 +6,7 @@ RUN pacman -Syyu --noconfirm \
       git \
       go \
       nodejs \
+      npm \
     && go get github.com/rhysd/vim-startuptime
 
 WORKDIR /root
