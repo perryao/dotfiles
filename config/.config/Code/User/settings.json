@@ -1,74 +1,102 @@
 {
-    "window.zoomLevel": 1,
-    "terraform.indexing": {
-        "enabled": true,
-        "liveIndexing": false,
-        "delay": 500,
-        "exclude": [
-            ".terraform/**/*",
-            "**/.terraform/**/*"
-        ]
+  "window.zoomLevel": 1,
+  "terraform.indexing": {
+    "enabled": false,
+    "liveIndexing": false,
+    "delay": 500,
+    "exclude": [".terraform/**/*", "**/.terraform/**/*"]
+  },
+  "[terraform]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "hashicorp.terraform"
+  },
+  "terraform.languageServer": {
+    "external": true,
+    "args": ["serve"]
+  },
+  "vim.camelCaseMotion.enable": false,
+  "vim.easymotion": true,
+  "vim.vimrc.enable": false,
+  "vim.sneak": true,
+  "vim.incsearch": true,
+  "vim.useSystemClipboard": true,
+  "vim.useCtrlKeys": true,
+  "vim.hlsearch": true,
+  "vim.insertModeKeyBindings": [
+    {
+      "before": ["j", "k"],
+      "after": ["<Esc>"]
+    }
+  ],
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": ["<leader>", "w"],
+      "commands": ["workbench.action.files.save"]
     },
-    "terraform.languageServer": {
-        "enabled": false,
-        "args": []
+    {
+      "before": ["<leader>", "d"],
+      "after": ["d", "d"]
     },
-    "vim.camelCaseMotion.enable": false,
-    "vim.easymotion": true,
-    "vim.vimrc.enable": false,
-    "vim.sneak": true,
-    "vim.incsearch": true,
-    "vim.useSystemClipboard": true,
-    "vim.useCtrlKeys": true,
-    "vim.hlsearch": true,
-    "vim.insertModeKeyBindings": [
-        {
-            "before": ["j", "k"],
-            "after": ["<Esc>"]
-        }
-    ],
-    "vim.normalModeKeyBindingsNonRecursive": [
-        {
-            "before": ["<leader>", "w"],
-            "commands": [
-                "workbench.action.files.save",
-            ]
-        },
-        {
-            "before": ["<leader>", "d"],
-            "after": ["d", "d"]
-        },
-        {
-            "before": ["<C-n>"],
-            "commands": [":nohl"]
-        },
-        {
-            "before": [";"],
-            "commands": [
-                "workbench.action.showCommands",
-            ]
-        },
-        {
-            "before": ["<leader>", "n", "n"],
-            "commands": ["workbench.action.toggleSidebarVisibility"]
-        },
-        {
-            "before": ["<leader>", "n", "f"],
-            "commands": ["workbench.view.explorer"]
-        },
-        {
-            "before": ["<leader>", "o"],
-            "commands": ["workbench.action.quickOpen"]
-        }
-    ],
-    "vim.leader": ",",
-    "vim.handleKeys": {
-        "<C-a>": false,
-        "<C-f>": false,
-        "<C-b>": false,
-        "<C-w>": false
+    {
+      "before": ["<C-n>"],
+      "commands": [":nohl"]
     },
-    "explorer.confirmDelete": false,
-    "editor.suggestSelection": "first",
-    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue"
+    {
+      "before": [";"],
+      "commands": ["workbench.action.showCommands"]
+    },
+    {
+      "before": ["<leader>", "n", "n"],
+      "commands": ["workbench.action.toggleSidebarVisibility"]
+    },
+    {
+      "before": ["<leader>", "n", "f"],
+      "commands": ["workbench.view.explorer"]
+    },
+    {
+      "before": ["<leader>", "o"],
+      "commands": ["workbench.action.quickOpen"]
+    }
+  ],
+  "vim.leader": ",",
+  "vim.handleKeys": {
+    "<C-a>": false,
+    "<C-f>": false,
+    "<C-k>": false,
+    "<C-j>": false
+  },
+  "explorer.confirmDelete": false,
+  "editor.formatOnSave": true,
+  "explorer.confirmDragAndDrop": false,
+  "go.useLanguageServer": true,
+  "go.formatTool": "goimports",
+  "[go]": {
+    "editor.formatOnSave": true
+  },
+  "go.testFlags": ["-v"],
+  "window.newWindowDimensions": "maximized",
+  "shellcheck.customArgs": ["-x"],
+  "editor.suggestSelection": "first",
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "java.configuration.runtimes": [
+    {
+      "name": "JavaSE-1.8",
+      "path": "/Users/mike/.jabba/jdk/adopt@1.8.0-242/Contents/Home"
+    }
+  ],
+  "java.home": "/Users/mike/.jabba/jdk/adopt@1.8.0-242/Contents/Home",
+  "files.watcherExclude": {
+    "**/.bloop": true,
+    "**/.metals": true,
+    "**/.ammonite": true
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }
