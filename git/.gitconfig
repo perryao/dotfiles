@@ -1,0 +1,6 @@
+[user]
+name = Mike Perry
+[includeIf "gitdir:~/code/personal/"]
+  path = .gitconfig-personal
+[includeIf "gitdir:~/code/work/"]
+  path = .gitconfig-work

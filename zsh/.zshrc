@@ -1,14 +1,11 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="mh"
-
+ZSH_THEME=""
+fpath+=$HOME/.zsh/pure
 plugins=(
   git 
   tmux
@@ -25,40 +22,34 @@ ZSH_TMUX_AUTOQUIT=true
 ZSH_TMUX_AUTOCONNECT=false
 source $ZSH/oh-my-zsh.sh
 
+# autoload
+autoload -U promptinit; promptinit
+autoload -U colors; colors
+autoload -U +X bashcompinit && bashcompinit
+
+# theme
+prompt pure
+
+#completion
+complete -o nospace -C /usr/bin/terraform terraform
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# aliases
 alias v="/usr/local/bin/nvim"
 alias v.="/usr/local/bin/nvim ."
+
+# path
 export GOPATH=$HOME/go
 export PATH="$GOPATH/bin:/usr/local/go/bin:$PATH"
 export PATH=$PATH:~/.cargo/bin
 export PATH=~/.npm-global/bin:$PATH
-
-export_proxy_vars() {
-  export http_proxy=http://localhost:3128
-  export HTTP_PROXY=$http_proxy
-  export https_proxy=http://localhost:3128
-  export HTTPS_PROXY=$https_proxy
-  export no_proxy="localhost,127.0.0.1,10.96.0.0/12,192.168.99.1/24,*.kroger.com"
-  export NO_PROXY=$no_proxy
-}
-
-export EDITOR=$(which vim)
+export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
 export PATH="$HOME/.yarn/bin:$PATH"
 # for aws cli
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.gem/ruby/2.5.0/bin:$PATH"
 
-# Python
-#export WORKON_HOME=$HOME/.virtualenvs   # optional
-#export PROJECT_HOME=$HOME/projects      # optional
-#source /usr/bin/virtualenvwrapper.sh
-#
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# added by travis gem
-[ -f "$HOME/.travis/travis.sh" ] && source "$HOME/.travis/travis.sh"
-
-export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
-
+export EDITOR=$(which nvim)
 
 # OS Specific config
 source "${ZDOTDIR:-${HOME}}/.zshrc-`uname`"
@@ -72,13 +63,44 @@ case `uname` in
   ;;
 esac
 
+if [ $commands[kubectl] ]; then
+  source <(kubectl completion zsh)
+fi
+
+export FZF_DEFAULT_COMMAND='rg --files --hidden -g "!.git"'
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# shows k8s context in right prompt
+RPROMPT='%{$fg[blue]%}($ZSH_KUBECTL_PROMPT)%{$reset_color%}'
+# shows k8s context in left prompt
+# PROMPT=$PROMPT'($ZSH_KUBECTL_PROMPT) '
+
+[ -s "$HOME/.jabba/jabba.sh" ] && source "$HOME/.jabba/jabba.sh"
+jabba use graalvm-ce-java11@21.0.0
+
 # Helper Functions
+export_proxy_vars() {
+  local minikube_no_proxy="10.96.0.0/12,192.168.99.0/24,192.168.39.0/24"
+  export http_proxy=http://localhost:3128
+  export HTTP_PROXY=$http_proxy
+  export https_proxy=http://localhost:3128
+  export HTTPS_PROXY=$https_proxy
+  export no_proxy="localhost,127.0.0.1,$minikube_no_proxy"
+  export NO_PROXY=$no_proxy
+}
+
+# Python
+#export WORKON_HOME=$HOME/.virtualenvs   # optional
+#export PROJECT_HOME=$HOME/projects      # optional
+#source /usr/bin/virtualenvwrapper.sh
+#
+
 checkport() {
   sudo lsof -n -i :$1| grep LISTEN
 }
 
 docker_proxy_on() {
-  new_config="`cat ~/.docker/config.json | jq --arg http_proxy $http_proxy --arg https_proxy $https_proxy  '. + {proxies: {default: {httpProxy:$http_proxy, httpsProxy: $https_proxy, noProxy: "*.kroger.com"}}}'`"
+  new_config="`cat ~/.docker/config.json | jq --arg http_proxy $http_proxy --arg https_proxy $https_proxy  '. + {proxies: {default: {httpProxy:$http_proxy, httpsProxy: $https_proxy, noProxy: "localhost"}}}'`"
   echo $new_config > ~/.docker/config.json
 }
 
@@ -109,27 +131,3 @@ proxy_off() {
   docker_proxy_off
   echo "proxy stopped"
 }
-
-if [ $commands[kubectl] ]; then
-  source <(kubectl completion zsh)
-fi
-
-# tabtab source for serverless package
-# uninstall by removing these lines or running `tabtab uninstall serverless`
-[[ -f "$HOME/n/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh" ]] && . "$HOME/n/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh"
-# tabtab source for sls package
-# uninstall by removing these lines or running `tabtab uninstall sls`
-[[ -f "$HOME/n/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh" ]] && . "$HOME/n/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh"
-# tabtab source for slss package
-# uninstall by removing these lines or running `tabtab uninstall slss`
-[[ -f "$HOME/n/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh" ]] && ."$HOME/n/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh"
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-
-autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /usr/bin/terraform terraform
-
-export FZF_DEFAULT_COMMAND='rg --files --hidden -g "!.git"'
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
