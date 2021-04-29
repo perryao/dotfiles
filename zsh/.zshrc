@@ -58,6 +58,7 @@ fi
 export FZF_DEFAULT_COMMAND='rg --files --hidden -g "!.git"'
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+
 # shows k8s context in right prompt
 RPROMPT='%{$fg[blue]%}($ZSH_KUBECTL_PROMPT)%{$reset_color%}'
 # shows k8s context in left prompt
@@ -73,6 +74,14 @@ export PATH="$HOME/.yarn/bin:$PATH"
 # for aws cli
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.gem/ruby/2.5.0/bin:$PATH"
+
+# for scalaenv: https://github.com/scalaenv/scalaenv#installation
+export PATH="${HOME}/.scalaenv/bin:${PATH}"
+eval "$(scalaenv init -)"
+
+# for sbtenv: https://github.com/sbtenv/sbtenv#installation
+export PATH="${HOME}/.sbtenv/bin:${PATH}"
+eval "$(sbtenv init -)"
 
 export EDITOR=$(which nvim)
 
