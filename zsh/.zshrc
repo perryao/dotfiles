@@ -38,18 +38,6 @@ complete -o nospace -C /usr/bin/terraform terraform
 alias v="/usr/local/bin/nvim"
 alias v.="/usr/local/bin/nvim ."
 
-# path
-export GOPATH=$HOME/go
-export PATH="$GOPATH/bin:/usr/local/go/bin:$PATH"
-export PATH=$PATH:~/.cargo/bin
-export PATH=~/.npm-global/bin:$PATH
-export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH="$N_PREFIX/bin:$PATH"  # Added by n-install (see http://git.io/n-install-repo).
-export PATH="$HOME/.yarn/bin:$PATH"
-# for aws cli
-export PATH="$HOME/.local/bin:$PATH"
-export PATH="$HOME/.gem/ruby/2.5.0/bin:$PATH"
-
-export EDITOR=$(which nvim)
 
 # OS Specific config
 source "${ZDOTDIR:-${HOME}}/.`uname`.zshrc"
@@ -74,6 +62,19 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden -g "!.git"'
 RPROMPT='%{$fg[blue]%}($ZSH_KUBECTL_PROMPT)%{$reset_color%}'
 # shows k8s context in left prompt
 # PROMPT=$PROMPT'($ZSH_KUBECTL_PROMPT) '
+
+# path
+export GOPATH=$HOME/go
+export PATH="$GOPATH/bin:/usr/local/go/bin:$PATH"
+export PATH=$PATH:~/.cargo/bin
+export PATH=~/.npm-global/bin:$PATH
+export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH="$N_PREFIX/bin:$PATH"  # Added by n-install (see http://git.io/n-install-repo).
+export PATH="$HOME/.yarn/bin:$PATH"
+# for aws cli
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.gem/ruby/2.5.0/bin:$PATH"
+
+export EDITOR=$(which nvim)
 
 # Helper Functions
 export_proxy_vars() {
