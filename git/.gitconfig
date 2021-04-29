@@ -6,3 +6,5 @@ name = Mike Perry
   path = .gitconfig-personal
 [includeIf "gitdir:~/code/work/"]
   path = .gitconfig-work
+[pull]
+  ff = only
