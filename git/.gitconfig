@@ -1,5 +1,7 @@
 [user]
 name = Mike Perry
+[include]
+    path = .gitconfig-extra
 [includeIf "gitdir:~/code/personal/"]
   path = .gitconfig-personal
 [includeIf "gitdir:~/code/work/"]
