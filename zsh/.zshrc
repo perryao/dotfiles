@@ -43,7 +43,7 @@ export GOPATH=$HOME/go
 export PATH="$GOPATH/bin:/usr/local/go/bin:$PATH"
 export PATH=$PATH:~/.cargo/bin
 export PATH=~/.npm-global/bin:$PATH
-export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
+export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH="$N_PREFIX/bin:$PATH"  # Added by n-install (see http://git.io/n-install-repo).
 export PATH="$HOME/.yarn/bin:$PATH"
 # for aws cli
 export PATH="$HOME/.local/bin:$PATH"
@@ -131,3 +131,6 @@ proxy_off() {
   docker_proxy_off
   echo "proxy stopped"
 }
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
