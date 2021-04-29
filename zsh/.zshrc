@@ -52,7 +52,7 @@ export PATH="$HOME/.gem/ruby/2.5.0/bin:$PATH"
 export EDITOR=$(which nvim)
 
 # OS Specific config
-source "${ZDOTDIR:-${HOME}}/.zshrc-`uname`"
+source "${ZDOTDIR:-${HOME}}/.`uname`.zshrc"
 case `uname` in
   Darwin)
     # commands for OS X go here
@@ -74,9 +74,6 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden -g "!.git"'
 RPROMPT='%{$fg[blue]%}($ZSH_KUBECTL_PROMPT)%{$reset_color%}'
 # shows k8s context in left prompt
 # PROMPT=$PROMPT'($ZSH_KUBECTL_PROMPT) '
-
-[ -s "$HOME/.jabba/jabba.sh" ] && source "$HOME/.jabba/jabba.sh"
-jabba use graalvm-ce-java11@21.0.0
 
 # Helper Functions
 export_proxy_vars() {
