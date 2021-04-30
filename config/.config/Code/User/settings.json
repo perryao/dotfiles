@@ -1,14 +1,7 @@
 {
   "window.zoomLevel": 1,
-  "terraform.indexing": {
-    "enabled": false,
-    "liveIndexing": false,
-    "delay": 500,
-    "exclude": [".terraform/**/*", "**/.terraform/**/*"]
-  },
   "[terraform]": {
-    "editor.formatOnSave": true,
-    "editor.defaultFormatter": "hashicorp.terraform"
+    "editor.formatOnSave": true
   },
   "terraform.languageServer": {
     "external": true,
@@ -97,6 +90,9 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   }
 }

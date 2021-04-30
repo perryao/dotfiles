@@ -38,6 +38,10 @@ complete -o nospace -C /usr/bin/terraform terraform
 alias v="/usr/local/bin/nvim"
 alias v.="/usr/local/bin/nvim ."
 
+for file in ~/.alias_*; do
+    source "$file"
+done
+
 
 # OS Specific config
 source "${ZDOTDIR:-${HOME}}/.`uname`.zshrc"
