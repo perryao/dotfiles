@@ -38,7 +38,7 @@ complete -o nospace -C /usr/bin/terraform terraform
 alias v="/usr/local/bin/nvim"
 alias v.="/usr/local/bin/nvim ."
 
-for file in ~/.alias_*; do
+for file in ~/.alias_*.(N); do
     source "$file"
 done
 
