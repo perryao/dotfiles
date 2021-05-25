@@ -1,11 +1,19 @@
 {
-  "window.zoomLevel": 1,
+  "window.zoomLevel": 2,
   "[terraform]": {
     "editor.formatOnSave": true
   },
   "terraform.languageServer": {
     "external": true,
-    "args": ["serve"]
+    "args": [
+      "serve",
+      "-tf-exec=/usr/local/bin/terraform",
+      "-log-file=/Users/mike/.vscode/logs/terraform-ls",
+      "-tf-log-file=/Users/mike/.vscode/logs/terraform-ls-tf"
+    ]
+  },
+  "terraform-ls.experimentalFeatures": {
+    "validateOnSave": true
   },
   "vim.camelCaseMotion.enable": false,
   "vim.easymotion": true,
@@ -61,12 +69,6 @@
   "explorer.confirmDelete": false,
   "editor.formatOnSave": true,
   "explorer.confirmDragAndDrop": false,
-  "go.useLanguageServer": true,
-  "go.formatTool": "goimports",
-  "[go]": {
-    "editor.formatOnSave": true
-  },
-  "go.testFlags": ["-v"],
   "window.newWindowDimensions": "maximized",
   "shellcheck.customArgs": ["-x"],
   "editor.suggestSelection": "first",
@@ -94,5 +96,21 @@
   },
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "workbench.editorAssociations": [
+    {
+      "viewType": "jupyter.notebook.ipynb",
+      "filenamePattern": "*.ipynb"
+    }
+  ],
+  "[yaml]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "terminal.integrated.tabs.enabled": true,
+  "go.lintOnSave": "package",
+  "go.lintTool": "golangci-lint",
+  "go.lintFlags": ["--enable-all", "--new"],
+  "python.pythonPath": ".venv/bin/python",
+  "python.envFile": "${workspaceFolder}/.env",
+  "python.formatting.provider": "black"
 }

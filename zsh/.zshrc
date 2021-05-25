@@ -87,6 +87,10 @@ eval "$(scalaenv init -)"
 export PATH="${HOME}/.sbtenv/bin:${PATH}"
 eval "$(sbtenv init -)"
 
+# for pyenv: https://github.com/pyenv/pyenv#homebrew-on-macos
+eval "$(pyenv init --path)"
+export PIPENV_VENV_IN_PROJECT="enabled"
+
 export EDITOR=$(which nvim)
 
 # Helper Functions
