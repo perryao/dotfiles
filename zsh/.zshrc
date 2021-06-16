@@ -31,17 +31,16 @@ autoload -U +X bashcompinit && bashcompinit
 prompt pure
 
 #completion
-complete -o nospace -C /usr/bin/terraform terraform
+complete -o nospace -C /usr/local/bin/terraform terraform
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # aliases
 alias v="/usr/local/bin/nvim"
 alias v.="/usr/local/bin/nvim ."
 
-for file in ~/.alias_*.(N); do
-    source "$file"
+for file in ~/.alias_*; do
+    . "$file"
 done
-
 
 # OS Specific config
 source "${ZDOTDIR:-${HOME}}/.`uname`.zshrc"
@@ -112,6 +111,11 @@ export_proxy_vars() {
 
 checkport() {
   sudo lsof -n -i :$1| grep LISTEN
+}
+
+killport() {
+  PID=$(echo $(lsof -n -i4TCP:$1) | awk 'NR==1{print $11}')
+  kill -9 $PID
 }
 
 docker_proxy_on() {

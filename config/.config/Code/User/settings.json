@@ -1,7 +1,7 @@
 {
-  "window.zoomLevel": 2,
   "[terraform]": {
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "hashicorp.terraform"
   },
   "terraform.languageServer": {
     "external": true,
@@ -76,10 +76,10 @@
   "java.configuration.runtimes": [
     {
       "name": "JavaSE-1.8",
-      "path": "/Users/mike/.jabba/jdk/adopt@1.8.0-242/Contents/Home"
+      "path": "/Users/mike/.jabba/jdk/graalvm-ce-java11@21.0.0/Contents/Home"
     }
   ],
-  "java.home": "/Users/mike/.jabba/jdk/adopt@1.8.0-242/Contents/Home",
+  "java.home": "/Users/mike/.jabba/jdk/graalvm-ce-java11@21.0.0/Contents/Home",
   "files.watcherExclude": {
     "**/.bloop": true,
     "**/.metals": true,
@@ -97,12 +97,9 @@
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "workbench.editorAssociations": [
-    {
-      "viewType": "jupyter.notebook.ipynb",
-      "filenamePattern": "*.ipynb"
-    }
-  ],
+  "workbench.editorAssociations": {
+    "*.ipynb": "jupyter.notebook.ipynb"
+  },
   "[yaml]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
@@ -112,5 +109,15 @@
   "go.lintFlags": ["--enable-all", "--new"],
   "python.pythonPath": ".venv/bin/python",
   "python.envFile": "${workspaceFolder}/.env",
-  "python.formatting.provider": "black"
+  "python.formatting.provider": "black",
+  "svg.preview.mode": "svg",
+  "window.zoomLevel": 1,
+  "go.toolsManagement.autoUpdate": true,
+  "editor.tabSize": 8,
+  "editor.cursorStyle": "line",
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": true,
+  "editor.lineNumbers": "on",
+  "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-",
+  "editor.wordWrap": "off"
 }
