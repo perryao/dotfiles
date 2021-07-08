@@ -1,0 +1,11 @@
+on: [push]
+
+jobs:
+  test_vim:
+    runs-on: ubuntu-latest
+    name: Tests vimrc
+    steps:
+      - uses: actions/checkout@v2
+      - name: startuptime
+        id: startuptime
+        uses: ./.github/actions/vim

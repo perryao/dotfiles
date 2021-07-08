@@ -1,0 +1,7 @@
+name: 'vim'
+description: 'test vim startuptime'
+inputs: {}
+outputs: {}
+runs:
+  using: 'docker'
+  image: '../../../Dockerfile'
