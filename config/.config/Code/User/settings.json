@@ -104,6 +104,9 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "terminal.integrated.tabs.enabled": true,
+  "terminal.integrated.env.osx": {
+    "PATH": ""
+  },
   "go.lintOnSave": "package",
   "go.lintTool": "golangci-lint",
   "go.lintFlags": ["--enable-all", "--new"],
@@ -111,7 +114,6 @@
   "python.envFile": "${workspaceFolder}/.env",
   "python.formatting.provider": "black",
   "svg.preview.mode": "svg",
-  "window.zoomLevel": 1,
   "go.toolsManagement.autoUpdate": true,
   "editor.tabSize": 8,
   "editor.cursorStyle": "line",
@@ -119,5 +121,16 @@
   "editor.detectIndentation": true,
   "editor.lineNumbers": "on",
   "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-",
-  "editor.wordWrap": "off"
+  "editor.wordWrap": "off",
+  "[c]": {
+    "editor.defaultFormatter": "ms-vscode.cpptools"
+  },
+  "redhat.telemetry.enabled": false,
+  "vscode-kubernetes.kubectl-path.mac": "/usr/local/bin/kubectl",
+  "vscode-kubernetes.kubectl-path": "/usr/local/bin/kubectl",
+  "vscode-kubernetes.helm-path.mac": "/usr/local/bin/helm",
+  "vscode-kubernetes.helm-path": "/usr/local/bin/helm",
+  "python.defaultInterpreterPath": ".venv/bin/python",
+  "editor.renderControlCharacters": true,
+  "editor.renderWhitespace": "all"
 }
