@@ -1,0 +1,1 @@
+alias rundebugpod="kubectl run -it perryao-dev --image=wbitt/network-multitool --rm --restart=Never -- bash"
