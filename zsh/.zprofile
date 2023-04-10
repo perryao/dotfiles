@@ -1,3 +1,4 @@
+eval $(/opt/homebrew/bin/brew shellenv)
 case `uname` in
   Darwin)
     # commands for OS X go here

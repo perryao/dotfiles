@@ -153,3 +153,18 @@ proxy_off() {
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
+# OS Specific config that needs to run last
+case `uname` in
+  Darwin)
+    # commands for OS X go here
+    source ${HOMEBREW_PREFIX}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    source ${HOMEBREW_PREFIX}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+    source ${HOMEBREW_PREFIX}/etc/zsh-kubectl-prompt/kubectl.zsh
+
+    source ${HOMEBREW_PREFIX}/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
+    source ${HOMEBREW_PREFIX}/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
+  ;;
+  Linux)
+    # commands for Linux go here
+  ;;
+esac
